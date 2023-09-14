@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="css/mediaQuery.css" />
+    <link rel="stylesheet" href="css/admin.css" />
+    <title>Admin</title>
+  </head>
+  <body>
+    <header class="container">
+      <h1 data-translate="welcome">Welcome to studio Booking</h1>
+      <div class="language-logout-wrapper">
+        <select id="language-selector">
+          <option class="languages-option-field" value="en">English</option>
+          <option class="languages-option-field" value="no">Norsk</option>
+        </select>
+        <button type="button" id="logout-btn">Logout</button>
+      </div>
+    </header>
+    <main class="container">
+      <h3 class="container-title">Admin Dashboard</h3>
+      <div class="welcome-user-title-wrapper">
+        <h4 data-translate="welcome_title"></h4>
+        <h4 class="welcome-user-title"></h4>
+      </div>
+      <div class="admin-container"></div>
+    </main>
+  </body>
+  <script src="js/admin.js"></script>
+  <script src="js/lang_module.js"></script>
+</html>

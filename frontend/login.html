@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/login.css" />
+    <title>Login</title>
+  </head>
+  <body>
+    <section class="container">
+      <h2 class="heading">Log in to your account</h2>
+      <div class="form-wrapper">
+        <form id="form">
+          <div class="input-lable-wrapper">
+            <label for="username">Username</label>
+            <input
+              id="username"
+              type="text"
+              autocomplete="name"
+              placeholder="Enter username"
+              autocapitalize="off"
+              title="username must be in lowercase without space"
+              pattern="[a-z0-9]+"
+              required
+            />
+          </div>
+          <div class="input-lable-wrapper">
+            <label for="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              autocomplete="current-password"
+              placeholder="Enter password"
+              required
+            />
+          </div>
+          <button type="submit" class="submit-btn">Login</button>
+          <p id="error-message"></p>
+        </form>
+      </div>
+      <p>Don't have an account? <a href="/signup.html">Sign up</a></p>
+    </section>
+  </body>
+
+  <script>
+    const form = document.getElementById("form");
+    const errorMessage = document.getElementById("error-message");
+    const submitBtn = document.getElementsByClassName("submit-btn");
+
+    // backend base url
+    const baseUrl = "https://room-booking-backend.onrender.com";
+
+    form.addEventListener("submit", async (e) => {
+      if (errorMessage.innerHTML.length) {
+        errorMessage.innerHTML = "";
+      }
+      e.preventDefault();
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      if (!navigator.onLine) {
+        return (errorMessage.innerHTML =
+          "Require internet connection to login");
+      }
+
+      try {
+        const response = await fetch(`${baseUrl}/users/login`, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ username: username.toLowerCase(), password }),
+        });
+        const data = await response.json();
+        // remove password from data object before save it local storage
+        const userInfo = Object.keys(data)
+          .filter((key) => key !== "password")
+          .reduce((acc, key) => {
+            acc[key] = data[key];
+            return acc;
+          }, {});
+        localStorage.setItem("userInfo", JSON.stringify(userInfo));
+        if (data.role !== "user") {
+          return (window.location.href = "admin.html");
+        }
+        window.location.href = "index.html";
+        e.target.reset();
+      } catch (error) {
+        console.log(error);
+        errorMessage.innerHTML = "Unauthorized check username and password!";
+      }
+    });
+  </script>
+</html>

@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
+}
+
+body {
+  background-color: #fafafa;
+}
+.hidden {
+  display: none;
+}
+.error-message {
+  color: #e20202;
+  text-align: center;
+}
+.welcome-user-title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin: 10px 0;
+  color: blue;
+  text-transform: capitalize;
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="css/mediaQuery.css" />
+    <title>Room Booking App</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1 data-translate="welcome">Welcome to studio Booking</h1>
+        <div class="language-logout-wrapper">
+          <select id="language-selector">
+            <option class="languages-option-field" value="en">English</option>
+            <option class="languages-option-field" value="no">Norsk</option>
+          </select>
+          <button type="button" id="logout-btn">Logout</button>
+        </div>
+      </header>
+    </div>
+
+    <main class="container">
+      <div class="welcome-user-title-wrapper">
+        <h4 data-translate="welcome_title"></h4>
+        <h4 class="welcome-user-title"></h4>
+      </div>
+      <h5 class="internet-status"></h5>
+      <section id="rooms-list">
+        <!-- Rooms will be dynamically generated here -->
+      </section>
+    </main>
+
+    <template id="room-template">
+      <article class="room">
+        <button class="room-name-btn"><!-- Room name --></button>
+        <div class="room-content hidden">
+          <p class="room-description"><!-- Room description --></p>
+          <!-- the date/time picker to appear -->
+          <form class="form">
+            <input
+              type="datetime-local"
+              class="booking-start-time"
+              placeholder="Starting Date & Time"
+              name="startTime"
+              title="Start Time"
+              aria-placeholder="select startTime time"
+              required
+            />
+            <span>-</span>
+            <input
+              type="datetime-local"
+              class="booking-end-time"
+              placeholder="Ending Date & Time"
+              name="endTime"
+              aria-placeholder="select startTime time"
+              title="End Time"
+              required
+            />
+            <button
+              type="submit"
+              data-translate="book_now"
+              class="book-now-btn"
+            >
+              Book Now
+            </button>
+            <p class="error-message"></p>
+          </form>
+        </div>
+      </article>
+    </template>
+
+    <div class="container bookings-container-wrapper">
+      <h2 class="bookings-title" data-translate="mybookings">My Bookings</h2>
+
+      <div class="bookings-container"></div>
+    </div>
+    <div
+      class="container bookings-container-wrapper shared-bookings-container-wrapper"
+    >
+      <h2 class="bookings-title shared-title" data-translate="mysharebookings">
+        My Shared Bookings
+      </h2>
+
+      <div class="shared-bookings-container"></div>
+    </div>
+  </body>
+  <script src="js/lang_module.js"></script>
+  <script src="js/app.js"></script>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/login.css" />
+    <title>Signup</title>
+  </head>
+  <body>
+    <section class="container">
+      <h2 class="heading">Create new account</h2>
+      <div class="form-wrapper">
+        <form id="form">
+          <div class="input-lable-wrapper">
+            <label for="username">Username</label>
+            <input
+              id="username"
+              type="text"
+              autocomplete="name"
+              placeholder="Enter username"
+              autocapitalize="off"
+              title="username must be in lowercase without space"
+              pattern="[a-z0-9]+"
+              required
+            />
+          </div>
+          <div class="input-lable-wrapper">
+            <label for="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              autocomplete="new-password"
+              placeholder="Choose your password"
+              required
+            />
+          </div>
+          <div class="input-lable-wrapper">
+            <label for="cpassword">Confirm Password</label>
+            <input
+              id="cpassword"
+              type="password"
+              autocomplete="new-password"
+              placeholder="Re-enter your password"
+              required
+            />
+          </div>
+          <button type="submit" class="submit-btn">Signup</button>
+          <p id="error-message"></p>
+        </form>
+      </div>
+      <p>Have an account? <a href="/login.html">Login</a></p>
+    </section>
+  </body>
+
+  <script>
+    const form = document.getElementById("form");
+    const errorMessage = document.getElementById("error-message");
+    const submitBtn = document.getElementsByClassName("submit-btn");
+
+    // backend base url
+    const baseUrl = "https://room-booking-backend.onrender.com";
+
+    form.addEventListener("submit", async (e) => {
+      if (errorMessage.innerHTML.length) {
+        errorMessage.innerHTML = "";
+      }
+      e.preventDefault();
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("cpassword").value;
+
+      if (!navigator.onLine) {
+        return (errorMessage.innerHTML =
+          "Require internet connection to signup");
+      }
+
+      try {
+        if (password !== confirmPassword) {
+          return (errorMessage.innerHTML =
+            "Password and confirm password does not match!");
+        }
+        const response = await fetch(`${baseUrl}/users/signup`, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ username: username.toLowerCase(), password }),
+        });
+        const data = await response.json();
+        if (data.error) {
+          return (errorMessage.innerHTML = data?.error);
+        }
+        localStorage.setItem("userInfo", JSON.stringify(data));
+        window.location.href = "index.html";
+        e.target.reset();
+      } catch (error) {
+        if (error instanceof Error) {
+          errorMessage.innerHTML = error.message;
+        }
+      }
+    });
+  </script>
+</html>
