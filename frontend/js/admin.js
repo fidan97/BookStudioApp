@@ -5,7 +5,7 @@ if (!userInfo) {
 }
 
 // backend base url
-const baseUrl = "https://room-booking-backend.onrender.com";
+const baseUrl = "https://booking-backend-mhb1.onrender.com/";
 
 // Logout button function
 const logoutBtn = document.getElementById("logout-btn");
