@@ -117,7 +117,7 @@ role admin
 Responded Data
 ● It will show all user’s booking lists in json format.
 
-Folder stucture:
+FOLDER STUCTURE: (view in code mode)
 
 PWABOOKSTUDIOAPP
                 -backend
