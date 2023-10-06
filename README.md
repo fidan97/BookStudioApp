@@ -21,7 +21,8 @@ If this live server not installed then install it first. It will create a localh
 
 
 
-The API DOCUMENTATIONS: 
+API DOCUMENTATIONS: 
+
 Users
 1. Signup user
 POST to "http://localhost:5000/users/signup"
