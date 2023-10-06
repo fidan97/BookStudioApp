@@ -1,4 +1,4 @@
-# studioBooking
+# some comments while working...
 
     server.js: This is the entry point of the application. It sets up the Express server, applies middleware, and mounts the routes. The express.json() middleware is used to parse incoming JSON requests, which is necessary for the signup route.
 
