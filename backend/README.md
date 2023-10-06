@@ -36,3 +36,9 @@ integrated libraries:
 
     passwords will be securely hashed*
     role-based accounts*
+     authentication sheme*
+    offline support*
+    live-hosted*
+    Html5 responsive*
+    Json*
+    Database Postgre*
