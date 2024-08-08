@@ -1,4 +1,4 @@
-# PWABookStudioApp
+# BookStudioApp
 HOW TO SET UP AND RUN THE APPLICATION IN YOUR LOCAL MACHINE (LAPTOP/DESKTOP):
 
 1. Install postgresql and pgAdmin.
